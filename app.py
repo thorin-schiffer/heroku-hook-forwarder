@@ -30,5 +30,6 @@ def forward():
                 "build_parameters[REVIEW_URL]": review_url,
             }
         )
+        print(response)
         context['response'] = response.json()
     return render_template('forward.html', **context)
