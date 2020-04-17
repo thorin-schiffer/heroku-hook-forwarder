@@ -20,12 +20,14 @@ def forward():
     context = {}
     if request.method == 'POST':
         branch = request.form['head']
+        review_url = request.form['url']
         url = f"https://circleci.com/api/v1.1/project/{VCS_TYPE}/{ORG}/{REPO}/tree/{branch}"
         response = requests.post(
             url,
             auth=HTTPBasicAuth(CIRCLE_API_KEY, ''),
             data={
-                "build_parameters[CIRCLE_JOB]": CIRCLE_JOB_NAME
+                "build_parameters[CIRCLE_JOB]": CIRCLE_JOB_NAME,
+                "build_parameters[REVIEW_URL]": review_url,
             }
         )
         context['response'] = response.json()
