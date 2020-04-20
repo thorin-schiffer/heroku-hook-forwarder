@@ -27,9 +27,8 @@ def forward():
             auth=HTTPBasicAuth(CIRCLE_API_KEY, ''),
             data={
                 "build_parameters[CIRCLE_JOB]": CIRCLE_JOB_NAME,
-                "build_parameters[CIRCLE_SHA1]": sha1_head,
-                "build_parameters[CIRCLE_BRANCH]": "",
                 "build_parameters[REVIEW_URL]": review_url,
+                "revision": sha1_head
             }
         )
         print(response.json(), request.form)
