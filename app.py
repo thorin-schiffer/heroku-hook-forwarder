@@ -19,7 +19,7 @@ CIRCLE_JOB_NAME = os.getenv("CIRCLE_JOB_NAME")
 def forward():
     context = {}
     if request.method == 'POST':
-        sha1_head = request.form['head']
+        sha1_head = request.form['head_long']
         review_url = request.form['url']
         url = f"https://circleci.com/api/v1.1/project/{VCS_TYPE}/{ORG}/{REPO}"
         response = requests.post(
@@ -28,6 +28,7 @@ def forward():
             data={
                 "build_parameters[CIRCLE_JOB]": CIRCLE_JOB_NAME,
                 "build_parameters[CIRCLE_SHA1]": sha1_head,
+                "build_parameters[CIRCLE_BRANCH]": "",
                 "build_parameters[REVIEW_URL]": review_url,
             }
         )
