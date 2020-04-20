@@ -14,6 +14,7 @@ ORG = os.getenv("ORG")
 REPO = os.getenv("REPO")
 CIRCLE_API_KEY = os.getenv("CIRCLE_API_KEY")
 CIRCLE_JOB_NAME = os.getenv("CIRCLE_JOB_NAME")
+CIRCLE_WORKFLOW_ID = os.getenv("CIRCLE_WORKFLOW_ID")
 
 
 def resolve_branch_name(sha1):
@@ -45,6 +46,7 @@ def forward():
             data={
                 "build_parameters[CIRCLE_JOB]": CIRCLE_JOB_NAME,
                 "build_parameters[REVIEW_URL]": review_url,
+                "build_parameters[CIRCLE_WORKFLOW_ID]": CIRCLE_WORKFLOW_ID,
                 "revision": sha1_head
             }
         )
